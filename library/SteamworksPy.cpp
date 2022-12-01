@@ -834,13 +834,13 @@ public:
         CSteamID steamID = SteamUser()->GetSteamID();
         if (steamID.ConvertToUint64() == userA) {
             printf("A Sending\n");
-            ConnectToSteamID = userB;
+            ConnectToSteamID = userA;
             msg = "hi I am A1";
             msg2 = "hi I am A2";
         }
         else if (steamID.ConvertToUint64() == userB) {
             printf("B Sending\n");
-            ConnectToSteamID = userA;
+            ConnectToSteamID = userB;
             msg = "hi I am B1";
             msg2 = "hi I am B2";
         }
