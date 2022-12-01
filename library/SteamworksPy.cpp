@@ -882,7 +882,7 @@ SW_PY int TESTZ() {
     
 
     SteamNetworkingIdentity x = SteamNetworkingIdentity();
-    x.m_eType = k_ESteamNetworkingIdentityType_SteamID;
+    //x.m_eType = k_ESteamNetworkingIdentityType_SteamID;
     CSteamID connectID = CreateSteamID(ConnectToSteamID, 1);
     x.SetSteamID(connectID);
     
