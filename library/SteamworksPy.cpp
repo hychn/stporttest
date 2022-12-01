@@ -863,7 +863,6 @@ public:
 
         //std:byte data[256];
         int eresult;
-        SteamNetworkingMessages()->AcceptSessionWithUser(x);
         eresult = SteamNetworkingMessages()->SendMessageToUser(x, &msg, sizeof(msg), 0, 0);
         printf("error %i", eresult);
         SteamAPI_RunCallbacks();
