@@ -891,7 +891,7 @@ SW_PY int TESTZ() {
     
     //std:byte data[256];
     int eresult;
-    
+    SteamNetworkingMessages()->AcceptSessionWithUser(x);
     eresult = SteamNetworkingMessages()->SendMessageToUser(x, &msg, sizeof(msg), 0, 0);
     printf("error %i", eresult);
     _sleep(5 * 1000);
@@ -899,6 +899,8 @@ SW_PY int TESTZ() {
     eresult = SteamNetworkingMessages()->SendMessageToUser(x, &msg2, sizeof(msg2), 0, 0);
     printf("error %i\n", eresult);
     _sleep(5 * 1000);
+    SteamAPI_RunCallbacks();
+    SteamNetworkingMessages()->AcceptSessionWithUser(x);
 
     SteamNetworkingMessage_t* msgs[32];
     int L = SteamNetworkingMessages()->ReceiveMessagesOnChannel(0, msgs, 32);
