@@ -894,11 +894,11 @@ SW_PY int TESTZ() {
     
     eresult = SteamNetworkingMessages()->SendMessageToUser(x, &msg, sizeof(msg), 0, 0);
     printf("error %i", eresult);
+    _sleep(5 * 1000);
+    SteamNetworkingMessages()->AcceptSessionWithUser(x);
     eresult = SteamNetworkingMessages()->SendMessageToUser(x, &msg2, sizeof(msg2), 0, 0);
     printf("error %i\n", eresult);
     _sleep(5 * 1000);
-    SteamNetworkingMessages()->AcceptSessionWithUser(x);
-    _sleep(2 * 1000);
 
     SteamNetworkingMessage_t* msgs[32];
     int L = SteamNetworkingMessages()->ReceiveMessagesOnChannel(0, msgs, 32);
