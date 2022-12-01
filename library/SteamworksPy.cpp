@@ -834,13 +834,13 @@ public:
         CSteamID steamID = SteamUser()->GetSteamID();
         if (steamID.ConvertToUint64() == userA) {
             printf("A Sending\n");
-            ConnectToSteamID = userA;
+            ConnectToSteamID = userB;
             msg = "hi I am A1";
             msg2 = "hi I am A2";
         }
         else if (steamID.ConvertToUint64() == userB) {
             printf("B Sending\n");
-            ConnectToSteamID = userB;
+            ConnectToSteamID = userA;
             msg = "hi I am B1";
             msg2 = "hi I am B2";
         }
@@ -867,13 +867,11 @@ public:
         eresult = SteamNetworkingMessages()->SendMessageToUser(x, &msg, sizeof(msg), 0, 0);
         printf("error %i", eresult);
         _sleep(5 * 1000);
-        SteamNetworkingMessages()->AcceptSessionWithUser(x);
         eresult = SteamNetworkingMessages()->SendMessageToUser(x, &msg2, sizeof(msg2), 0, 0);
         printf("error %i\n", eresult);
         _sleep(5 * 1000);
         SteamAPI_RunCallbacks();
-        SteamNetworkingMessages()->AcceptSessionWithUser(x);
-
+        _sleep(1 * 1000);
 
 
         SteamNetworkingMessage_t* msgs[32];
@@ -897,7 +895,10 @@ private:
 void MessageManager::msgReq(SteamNetworkingMessagesSessionRequest_t* param)
 {
     //connectionStatusChangeQueue.Enqueue(param);
-    printf("\nCALLBACK RECIEVED!!\n");
+    
+    SteamNetworkingMessages()->AcceptSessionWithUser(param->m_identityRemote);
+    SteamNetworkingIdentity x = param->m_identityRemote;
+    printf("\nCALLBACK RECIEVED!! %i \n",x.GetSteamID());
 }
 
 static MessageManager msgmanager;
