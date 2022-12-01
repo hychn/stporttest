@@ -870,7 +870,7 @@ SW_PY int TESTZ() {
     if (steamID.ConvertToUint64() == userA) {
         printf("A Sending\n");
         ConnectToSteamID = userB;
-        msg = "hi I am A";
+        msg = "hi I am A1";
         msg2 = "hi I am A2";
     }
     else if (steamID.ConvertToUint64() == userB) {
@@ -890,13 +890,19 @@ SW_PY int TESTZ() {
     //byte[] data = new byte[segment.Count + 1];
     
     //std:byte data[256];
-    SteamNetworkingMessages()->AcceptSessionWithUser(x);
-    SteamNetworkingMessages()->SendMessageToUser(x, &msg, sizeof(msg), 0, 0);
-    SteamNetworkingMessages()->SendMessageToUser(x, &msg2, sizeof(msg2), 0, 0);
+    int eresult;
+    
+    eresult = SteamNetworkingMessages()->SendMessageToUser(x, &msg, sizeof(msg), 0, 0);
+    printf("error %i", eresult);
+    eresult = SteamNetworkingMessages()->SendMessageToUser(x, &msg2, sizeof(msg2), 0, 0);
+    printf("error %i\n", eresult);
     _sleep(5 * 1000);
+    SteamNetworkingMessages()->AcceptSessionWithUser(x);
+    _sleep(2 * 1000);
 
     SteamNetworkingMessage_t* msgs[32];
     int L = SteamNetworkingMessages()->ReceiveMessagesOnChannel(0, msgs, 32);
+    printf("messages %i\n", L);
     for (int i = 0; i < L; i++) {
         SteamNetworkingMessage_t* message = msgs[i];
         //void* data = message->GetData();
