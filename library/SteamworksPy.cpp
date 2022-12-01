@@ -868,12 +868,12 @@ SW_PY int TESTZ() {
     CSteamID steamID = SteamUser()->GetSteamID();
     if (steamID.ConvertToUint64() == userA) {
         printf("A Sending\n");
-        ConnectToSteamID = userB;
+        ConnectToSteamID = userA;
         msg = "hi I am A";
     }
     else if (steamID.ConvertToUint64() == userB) {
         printf("B Sending\n");
-        ConnectToSteamID = userA;
+        ConnectToSteamID = userB;
         msg = "hi I am B";
     }
     
