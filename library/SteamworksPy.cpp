@@ -872,6 +872,7 @@ SW_PY int TESTZ() {
         msg = "hi I am A";
     }
     else if (steamID.ConvertToUint64() == userB) {
+        printf("B Sending\n");
         ConnectToSteamID = userA;
         msg = "hi I am B";
     }
