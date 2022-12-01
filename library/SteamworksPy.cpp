@@ -868,12 +868,12 @@ SW_PY int TESTZ() {
     CSteamID steamID = SteamUser()->GetSteamID();
     if (steamID.ConvertToUint64() == userA) {
         printf("A Sending\n");
-        ConnectToSteamID = userA;
+        ConnectToSteamID = userB;
         msg = "hi I am A";
     }
     else if (steamID.ConvertToUint64() == userB) {
         printf("B Sending\n");
-        ConnectToSteamID = userB;
+        ConnectToSteamID = userA;
         msg = "hi I am B";
     }
     
@@ -887,7 +887,7 @@ SW_PY int TESTZ() {
     //byte[] data = new byte[segment.Count + 1];
     
     //std:byte data[256];
-    
+    SteamNetworkingMessages()->AcceptSessionWithUser(x);
     SteamNetworkingMessages()->SendMessageToUser(x, &msg, sizeof(msg), 0, 0);
     _sleep(5 * 1000);
     SteamNetworkingMessages()->SendMessageToUser(x, &msg, sizeof(msg), 0, 0);
