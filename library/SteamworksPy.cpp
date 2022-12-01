@@ -888,8 +888,11 @@ SW_PY int TESTZ() {
     //std:byte data[256];
     
     SteamNetworkingMessages()->SendMessageToUser(x, &msg, sizeof(msg), 0, 0);
+    _sleep(5 * 1000);
+    SteamNetworkingMessages()->SendMessageToUser(x, &msg, sizeof(msg), 0, 0);
+    _sleep(5 * 1000);
+
     SteamNetworkingMessage_t* msgs[32];
-    _sleep(10 * 1000);
     int L = SteamNetworkingMessages()->ReceiveMessagesOnChannel(0, msgs, 32);
     for (int i = 0; i < L; i++) {
         SteamNetworkingMessage_t* message = msgs[i];
