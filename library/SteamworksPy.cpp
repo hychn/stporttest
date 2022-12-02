@@ -867,15 +867,16 @@ public:
         int eresult;
         eresult = SteamNetworkingMessages()->SendMessageToUser(x, &msg, sizeof(msg), 0, 0);
         printf("error %i", eresult);
-        _sleep(5 * 1000);
         SteamAPI_RunCallbacks();
+        SteamAPI_RunCallbacks();
+        _sleep(5 * 1000);
         eresult = SteamNetworkingMessages()->SendMessageToUser(x, &msg2, sizeof(msg2), 0, 0);
         printf("error %i\n", eresult);
-        _sleep(2 * 1000);
         SteamAPI_RunCallbacks();
-        
-        _sleep(2 * 1000);
+        _sleep(5 * 1000);
         SteamAPI_RunCallbacks();
+        _sleep(1 * 1000);
+
 
         SteamNetworkingMessage_t* msgs[32];
         int L = SteamNetworkingMessages()->ReceiveMessagesOnChannel(0, msgs, 32);
