@@ -303,10 +303,6 @@ CSteamID CreateSteamID(uint32 steamID, int accountType) {
     return cSteamID;
 }
 
-// Callbacks
-SW_PY void RunCallbacks() {
-    SteamAPI_RunCallbacks();
-}
 
 // Shuts down the Steamworks API, releases pointers and frees memory.
 SW_PY void SteamShutdown() {
@@ -832,9 +828,11 @@ public:
         std::string msg = m;
         CSteamID steamID = SteamUser()->GetSteamID();
         if (steamID.ConvertToUint64() == userA) {
+            printf("SENDING AS A\n");
             ConnectToSteamID = userB;
         }
         else if (steamID.ConvertToUint64() == userB) {
+            printf("SENDING AS B\n");
             ConnectToSteamID = userA;
         }
 
@@ -851,7 +849,7 @@ public:
     }
     void getmsg()
     {
-        SteamAPI_RunCallbacks();
+        //SteamAPI_RunCallbacks();
 
         SteamNetworkingMessage_t* msgs[32];
         int L = SteamNetworkingMessages()->ReceiveMessagesOnChannel(0, msgs, 32);
@@ -865,6 +863,7 @@ public:
             message->Release();
         }
     }
+
 private:
 
     STEAM_CALLBACK(MessageManager, msgReq, SteamNetworkingMessagesSessionRequest_t);
@@ -938,6 +937,10 @@ SW_PY int SendMSG(const char *m) {
 
     msgmanager.sendmsg(m);  
     return 0;
+}
+
+SW_PY void RunCallbacks() {
+    SteamAPI_RunCallbacks();
 }
 
 

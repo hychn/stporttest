@@ -46,10 +46,11 @@ elif my_steam64==76561199440426562:
 else:
     NAME = b'ERROR'
 
+print("WORKING AS", NAME)
 for i in range(1000):
     steamworks.Users.SendMSG(NAME+b'HELLO'+ bytes(str(i),"utf") )
     steamworks.Users.GetMSG()
-    time.sleep(1)
+    time.sleep(.1)
 
 #print(f'Logged on as {my_steam64}, level: {my_steam_level}')
 #x = steamworks.UserStats.FindLeaderboard('Quickest Win', retLB)
