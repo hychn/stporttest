@@ -878,8 +878,8 @@ public:
             SteamNetworkingMessage_t* msgs[32];
             int L = SteamNetworkingMessages()->ReceiveMessagesOnChannel(0, msgs, 32);
             //printf("messages %i\n", L);
-            for (int i = 0; i < L; i++) {
-                SteamNetworkingMessage_t* message = msgs[i];
+            for (int j = 0; j < L; j++) {
+                SteamNetworkingMessage_t* message = msgs[j];
                 //void* data = message->GetData();
 
                 printf("%s\n", (*(std::string*)message->m_pData).c_str());
