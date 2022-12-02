@@ -837,13 +837,11 @@ public:
             ConnectToSteamID = userB;
             //ConnectToSteamID = 3550937430;
             msg = "hi I am A1";
-            msg2 = "hi I am A2";
         }
         else if (steamID.ConvertToUint64() == userB) {
             printf("B Sending\n");
             ConnectToSteamID = userA;
             msg = "hi I am B1";
-            msg2 = "hi I am B2";
         }
 
 
@@ -864,11 +862,12 @@ public:
 
         //std:byte data[256];
         
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1000; i++) {
 
-        
+            std::string  tempmsg = msg + std::to_string(i);
+
             int eresult;
-            eresult = SteamNetworkingMessages()->SendMessageToUser(x, &msg, sizeof(msg), 0, 0);
+            eresult = SteamNetworkingMessages()->SendMessageToUser(x, &tempmsg, sizeof(tempmsg), 0, 0);
             //printf("error %i", eresult);
 
             SteamAPI_RunCallbacks();
