@@ -1,7 +1,6 @@
 import steamworks.structs as structs
 
 from ctypes import *
-from numpy.ctypeslib import ndpointer
 import ctypes
 
 # May require some OS checks in future to pick the right calling convention
