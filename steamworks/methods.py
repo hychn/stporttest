@@ -234,6 +234,10 @@ STEAMWORKS_METHODS = {
         'restype': int
     },
 
+    'RunCallbacks': {
+        'restype': None
+    },
+
     'GetUserDataFolder': {
         'restype': c_char_p
     },

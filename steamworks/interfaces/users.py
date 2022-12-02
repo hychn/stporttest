@@ -44,8 +44,6 @@ class SteamUsers(object):
         """
         return self.steam.GetMSG()
 
-
-
     def SendMSG(self, m) -> int:
         """Get the user's Steam level.
 
@@ -53,7 +51,8 @@ class SteamUsers(object):
         """
         return self.steam.SendMSG(m)
 
-
+    def RunCallbacks(self) -> int:
+        return self.steam.RunCallbacks()
 
     def GetGameBadgeLevel(self, series: int, foil: int) -> int:
         """Trading Card badges data access, if you only have one set of cards, the series will be 1.
