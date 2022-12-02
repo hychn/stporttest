@@ -835,6 +835,7 @@ public:
         if (steamID.ConvertToUint64() == userA) {
             printf("A Sending\n");
             ConnectToSteamID = userB;
+            //ConnectToSteamID = 3550937430;
             msg = "hi I am A1";
             msg2 = "hi I am A2";
         }
@@ -862,6 +863,7 @@ public:
         //byte[] data = new byte[segment.Count + 1];
 
         //std:byte data[256];
+        
         int eresult;
         eresult = SteamNetworkingMessages()->SendMessageToUser(x, &msg, sizeof(msg), 0, 0);
         printf("error %i", eresult);
@@ -892,6 +894,7 @@ public:
 private:
 
     STEAM_CALLBACK(MessageManager, msgReq, SteamNetworkingMessagesSessionRequest_t);
+    STEAM_CALLBACK(MessageManager, msgFail, SteamNetworkingMessagesSessionFailed_t);
     
 };
 void MessageManager::msgReq(SteamNetworkingMessagesSessionRequest_t* param)
@@ -900,7 +903,14 @@ void MessageManager::msgReq(SteamNetworkingMessagesSessionRequest_t* param)
     
     SteamNetworkingMessages()->AcceptSessionWithUser(param->m_identityRemote);
     SteamNetworkingIdentity x = param->m_identityRemote;
-    printf("\nCALLBACK RECIEVED!! %i \n",x.GetSteamID());
+    printf("\nCALLBACK RECIEVED!! %i \n", x.GetSteamID());
+}
+
+void MessageManager::msgFail(SteamNetworkingMessagesSessionFailed_t* param)
+{
+    //connectionStatusChangeQueue.Enqueue(param);
+
+    printf("\n FAILED Reason: %i \n", param->m_info.m_eEndReason);
 }
 
 static MessageManager msgmanager;
