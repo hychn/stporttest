@@ -828,11 +828,11 @@ public:
         std::string msg = m;
         CSteamID steamID = SteamUser()->GetSteamID();
         if (steamID.ConvertToUint64() == userA) {
-            printf("SENDING AS A\n");
+            //printf("SENDING AS A\n");
             ConnectToSteamID = userB;
         }
         else if (steamID.ConvertToUint64() == userB) {
-            printf("SENDING AS B\n");
+            //printf("SENDING AS B\n");
             ConnectToSteamID = userA;
         }
 
