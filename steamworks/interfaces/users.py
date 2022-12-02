@@ -37,12 +37,21 @@ class SteamUsers(object):
         """
         return self.steam.GetPlayerSteamLevel()
 
-    def TESTZ(self) -> int:
+    def GetMSG(self) -> int:
         """Get the user's Steam level.
 
         :return: int
         """
-        return self.steam.TESTZ()
+        return self.steam.GetMSG()
+
+
+
+    def SendMSG(self, m) -> int:
+        """Get the user's Steam level.
+
+        :return: int
+        """
+        return self.steam.SendMSG(m)
 
 
 

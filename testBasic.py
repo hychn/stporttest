@@ -1,7 +1,7 @@
 """
 Basic example on how to instance a STEAMWORKS API object and execute a basic call
 """
-
+import time
 import os
 import sys
 
@@ -37,13 +37,21 @@ steamworks.initialize() # This method has to be called in order for the wrapper 
 Execute two basic calls from the SteamUsers interface to retrieve SteamID from logged in user and Steam profile level 
 """
 my_steam64 = steamworks.Users.GetSteamID()
-my_steam_level = steamworks.Users.GetPlayerSteamLevel()
-my_steam_level = steamworks.Users.TESTZ()
+#my_steam_level = steamworks.Users.GetPlayerSteamLevel()
 
-print(f'Logged on as {my_steam64}, level: {my_steam_level}')
-def retLB():
-    print('ho')
+if my_steam64==76561198043970459:
+    NAME = b'A'
+elif my_steam64==76561199440426562:
+    NAME = b'B'
+else:
+    NAME = b'ERROR'
+
+for i in range(1000):
+    steamworks.Users.SendMSG(NAME+b'HELLO'+ bytes(str(i),"utf") )
+    steamworks.Users.GetMSG()
+    time.sleep(1)
+
+#print(f'Logged on as {my_steam64}, level: {my_steam_level}')
 #x = steamworks.UserStats.FindLeaderboard('Quickest Win', retLB)
 
-import time
-time.sleep(5)
+

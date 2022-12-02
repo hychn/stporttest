@@ -227,9 +227,13 @@ STEAMWORKS_METHODS = {
     'GetPlayerSteamLevel': {
         'restype': int
     },
-    'TESTZ': {
+    'SendMSG': {
         'restype': int
     },
+    'GetMSG': {
+        'restype': int
+    },
+
     'GetUserDataFolder': {
         'restype': c_char_p
     },

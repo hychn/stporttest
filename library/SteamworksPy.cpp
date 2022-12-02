@@ -824,68 +824,45 @@ class MessageManager
 {
 public:
     
-    void sendmsg()
+    void sendmsg(const char *m)
     {
         uint64 userA = 76561198043970459;
         uint64 userB = 76561199440426562;
         int ConnectToSteamID;
-        std::string msg;
-        std::string msg2;
+        std::string msg = m;
         CSteamID steamID = SteamUser()->GetSteamID();
         if (steamID.ConvertToUint64() == userA) {
-            printf("A Sending\n");
             ConnectToSteamID = userB;
-            //ConnectToSteamID = 3550937430;
-            msg = "hi I am A1";
         }
         else if (steamID.ConvertToUint64() == userB) {
-            printf("B Sending\n");
             ConnectToSteamID = userA;
-            msg = "hi I am B1";
         }
-
-
-        //m_CallResultLobbyMatchList.Set(hSteamAPICall, this, &CLobbyListManager::OnLobbyMatchList);
-        //nnectionChange = null;
-        //c_onConnectionChange = Callback<SteamNetworkingMessagesSessionRequest_t>.Create(OnConnectionStatusChanged);
-
-        
-
 
         SteamNetworkingIdentity x = SteamNetworkingIdentity();
         //x.m_eType = k_ESteamNetworkingIdentityType_SteamID;
         CSteamID connectID = CreateSteamID(ConnectToSteamID, 1);
         x.SetSteamID(connectID);
 
-        //ArraySegment<byte> segment;
-        //byte[] data = new byte[segment.Count + 1];
-
-        //std:byte data[256];
-        
-        for (int i = 0; i < 1000; i++) {
-
-            std::string  tempmsg = msg + std::to_string(i);
-
-            int eresult;
-            eresult = SteamNetworkingMessages()->SendMessageToUser(x, &tempmsg, sizeof(tempmsg), 0, 0);
-            //printf("error %i", eresult);
-
-            SteamAPI_RunCallbacks();
-            _sleep(100);
-            SteamAPI_RunCallbacks();
+        int eresult;
+        eresult = SteamNetworkingMessages()->SendMessageToUser(x, &msg, sizeof(msg), 0, 0);
+        //printf("error %i", eresult);
 
 
-            SteamNetworkingMessage_t* msgs[32];
-            int L = SteamNetworkingMessages()->ReceiveMessagesOnChannel(0, msgs, 32);
-            //printf("messages %i\n", L);
-            for (int j = 0; j < L; j++) {
-                SteamNetworkingMessage_t* message = msgs[j];
-                //void* data = message->GetData();
+    }
+    void getmsg()
+    {
+        SteamAPI_RunCallbacks();
 
-                printf("%s\n", (*(std::string*)message->m_pData).c_str());
-                //std::cout << (std::string*)message->m_pData;
-                message->Release();
-            }
+        SteamNetworkingMessage_t* msgs[32];
+        int L = SteamNetworkingMessages()->ReceiveMessagesOnChannel(0, msgs, 32);
+        //printf("messages %i\n", L);
+        for (int j = 0; j < L; j++) {
+            SteamNetworkingMessage_t* message = msgs[j];
+            //void* data = message->GetData();
+
+            printf("%s\n", (*(std::string*)message->m_pData).c_str());
+            //std::cout << (std::string*)message->m_pData;
+            message->Release();
         }
     }
 private:
@@ -900,7 +877,8 @@ void MessageManager::msgReq(SteamNetworkingMessagesSessionRequest_t* param)
     
     SteamNetworkingMessages()->AcceptSessionWithUser(param->m_identityRemote);
     SteamNetworkingIdentity x = param->m_identityRemote;
-    printf("\nCALLBACK RECIEVED!! %i \n", x.GetSteamID());
+    //printf("\nCALLBACK RECIEVED!! %i \n", x.GetSteamID());
+    printf("\nCALLBACK RECIEVED!! %i \n", (int) x.GetSteamID64() );
 }
 
 void MessageManager::msgFail(SteamNetworkingMessagesSessionFailed_t* param)
@@ -942,21 +920,24 @@ EResult responce = SteamNetworkingSockets.SendMessageToConnection(connection, pD
 // https://github.com/Unity-Technologies/multiplayer-community-contributions/blob/main/Transports/com.community.netcode.transport.steamnetworkingsockets/Runtime/SteamNetworkingSocketsTransport.cs
 
 
-
-SW_PY int TESTZ() {
+SW_PY int GetMSG() {
     if (SteamUser() == NULL) {
         return 0;
     }
-    
+    msgmanager.getmsg();
+    return 0;
+}
+
+SW_PY int SendMSG(const char *m) {
+    if (SteamUser() == NULL) {
+        return 0;
+    }  
     //lobbymanager.FindLobbies();
     //_sleep(5000);
     //SteamAPI_RunCallbacks();
-    msgmanager.sendmsg();
-    //userA, userB
-    //Based on current user SteamID run the code
 
-
-    return SteamUser()->GetPlayerSteamLevel() + 10;
+    msgmanager.sendmsg(m);  
+    return 0;
 }
 
 
