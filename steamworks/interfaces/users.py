@@ -42,7 +42,12 @@ class SteamUsers(object):
 
         :return: int
         """
-        return self.steam.GetMSG()
+        x = self.steam.GetMSG()
+
+        if x: print(x.contents)
+        #print( [i for i in x.contents] )
+
+        return x
 
     def SendMSG(self, m) -> int:
         """Get the user's Steam level.

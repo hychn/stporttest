@@ -1,6 +1,8 @@
 import steamworks.structs as structs
 
 from ctypes import *
+from numpy.ctypeslib import ndpointer
+import ctypes
 
 # May require some OS checks in future to pick the right calling convention
 # (ala CFUNCTYPE vs WINFUNCTYPE), but so far even on Win64, it's all cdecl
@@ -231,7 +233,9 @@ STEAMWORKS_METHODS = {
         'restype': int
     },
     'GetMSG': {
-        'restype': int
+        #'restype': POINTER(c_ *32)
+        'restype': ctypes.POINTER(ctypes.c_char_p)
+        #'restype': ndpointer(dtype=ctypes.c_char, shape=(32,)) 
     },
 
     'RunCallbacks': {

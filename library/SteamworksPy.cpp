@@ -847,21 +847,24 @@ public:
 
 
     }
-    void getmsg()
+    char** getmsg()
     {
         //SteamAPI_RunCallbacks();
 
         SteamNetworkingMessage_t* msgs[32];
+        char* data[32];
         int L = SteamNetworkingMessages()->ReceiveMessagesOnChannel(0, msgs, 32);
         //printf("messages %i\n", L);
-        for (int j = 0; j < L; j++) {
-            SteamNetworkingMessage_t* message = msgs[j];
+        for (int i = 0; i < L; i++) {
+            SteamNetworkingMessage_t* message = msgs[i];
             //void* data = message->GetData();
 
-            printf("%s\n", (*(std::string*)message->m_pData).c_str());
+            //printf("%s\n", (*(std::string*)message->m_pData).c_str());
+            data[i] = (char*)message->m_pData;
             //std::cout << (std::string*)message->m_pData;
             message->Release();
         }
+        return data;
     }
 
 private:
