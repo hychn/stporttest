@@ -864,7 +864,7 @@ public:
 
         //std:byte data[256];
         
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100; i++) {
 
         
             int eresult;
@@ -872,7 +872,7 @@ public:
             //printf("error %i", eresult);
 
             SteamAPI_RunCallbacks();
-            _sleep(5 * 1000);
+            _sleep(100);
             SteamAPI_RunCallbacks();
 
 
