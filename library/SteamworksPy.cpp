@@ -865,8 +865,11 @@ public:
             //std::cout << (std::string*)message->m_pData;
             message->Release();
         }
+
+
         
         return data;
+        
     }
 
 private:
@@ -924,12 +927,11 @@ EResult responce = SteamNetworkingSockets.SendMessageToConnection(connection, pD
 // https://github.com/Unity-Technologies/multiplayer-community-contributions/blob/main/Transports/com.community.netcode.transport.steamnetworkingsockets/Runtime/SteamNetworkingSocketsTransport.cs
 
 
-SW_PY int GetMSG() {
+SW_PY char** GetMSG() {
     if (SteamUser() == NULL) {
         return 0;
     }
-    msgmanager.getmsg();
-    return 0;
+    return msgmanager.getmsg();
 }
 
 SW_PY int SendMSG(const char *m) {
