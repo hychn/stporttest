@@ -878,8 +878,9 @@ public:
         SteamAPI_RunCallbacks();
         _sleep(1 * 1000);
         */
-        SteamAPI_RunCallbacks();
+        
         _sleep(5 * 1000);
+        SteamAPI_RunCallbacks();
 
         SteamNetworkingMessage_t* msgs[32];
         int L = SteamNetworkingMessages()->ReceiveMessagesOnChannel(0, msgs, 32);
