@@ -51,6 +51,7 @@ for i in range(1000):
     steamworks.Users.SendMSG(NAME+b'HELLO'+ bytes(str(i),"utf") )
     steamworks.Users.GetMSG()
     time.sleep(.1)
+    if i%10==0: steamworks.Users.RunCallbacks()
 
 #print(f'Logged on as {my_steam64}, level: {my_steam_level}')
 #x = steamworks.UserStats.FindLeaderboard('Quickest Win', retLB)

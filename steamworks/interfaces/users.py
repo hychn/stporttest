@@ -51,7 +51,7 @@ class SteamUsers(object):
         """
         return self.steam.SendMSG(m)
 
-    def RunCallbacks(self) -> int:
+    def RunCallbacks(self) -> None:
         return self.steam.RunCallbacks()
 
     def GetGameBadgeLevel(self, series: int, foil: int) -> int:
