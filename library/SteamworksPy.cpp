@@ -859,11 +859,12 @@ public:
             SteamNetworkingMessage_t* message = msgs[i];
             //void* data = message->GetData();
 
-            printf("%s\n", (*(std::string*)message->m_pData).c_str());
+            //printf("%s\n", (*(std::string*)message->m_pData).c_str());
             data[i] = (char*)message->m_pData;
             //std::cout << (std::string*)message->m_pData;
             message->Release();
         }
+        printf("%s\n", data[0]);
         return data;
     }
 
