@@ -847,6 +847,7 @@ public:
 
 
     }
+    //char** getmsg()
     char** getmsg()
     {
         //SteamAPI_RunCallbacks();
@@ -866,10 +867,13 @@ public:
             message->Release();
         }
 
-
+        int* information = new int[10];
+        for (int k = 0; k < 10; k++) {
+            information[k] = k;
+        }
         
         return data;
-        
+        //return information;
     }
 
 private:
@@ -932,6 +936,7 @@ SW_PY char** GetMSG() {
         return 0;
     }
     return msgmanager.getmsg();
+    
 }
 
 SW_PY int SendMSG(const char *m) {

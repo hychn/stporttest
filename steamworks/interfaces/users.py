@@ -43,10 +43,7 @@ class SteamUsers(object):
         :return: int
         """
         x = self.steam.GetMSG()
-        print( [i for i in x.contents] )
-        if x: 
-            #print(x.contents)
-            print( [i for i in x.contents] )
+        print( [i.raw for i in x.contents] )
 
         return x
 

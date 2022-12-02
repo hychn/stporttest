@@ -232,10 +232,8 @@ STEAMWORKS_METHODS = {
         'restype': int
     },
     'GetMSG': {
-        #'restype': POINTER(c_ *32)
         'restype': ctypes.POINTER(ctypes.c_char_p*32)
         #'restype': ctypes.POINTER(ctypes.c_int*10)
-        #'restype': ndpointer(dtype=ctypes.c_char, shape=(32,)) 
     },
 
     'RunCallbacks': {
