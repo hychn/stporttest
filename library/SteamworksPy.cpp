@@ -877,13 +877,12 @@ public:
             str += (char*)message->m_pData;
             char* cstr = new char[str.length() + 1];
             strcpy(cstr, str.c_str());
-            // do stuff
             data[i] = cstr;
             delete[] cstr;
 
 
             
-            printf("%s\n", data[i]);
+            //printf("%s\n", data[i]);
             message->Release();
         }
         /*
