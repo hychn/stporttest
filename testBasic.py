@@ -54,8 +54,8 @@ for i in range(1000):
         data = []
         L = x.contents[-1]
         L =  int.from_bytes(L,sys.byteorder)
-        if L>0:
-            print( [ i for i in x.contents[:L] ] )
+        print( [ i for i in x.contents ] )
+        #if L>0: print( [ i for i in x.contents[:L] ] )
 
         #if i: print(i.value)
     #print(len(x.contents))
