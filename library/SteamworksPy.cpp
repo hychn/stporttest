@@ -885,12 +885,12 @@ public:
             //printf("%s\n", data[i]);
             message->Release();
         }
-        /*
-        char ch = static_cast<char>(1);
+        
+        char ch = static_cast<char>(L);
         char len[2];
         len[0] = ch;
         data[16] = len;
-        */
+        
 
 
         int* information = new int[10];
