@@ -5,6 +5,7 @@ import steamworks.util 		as util
 from steamworks.enums 		import *
 from steamworks.structs 	import *
 from steamworks.exceptions 	import *
+import sys
 
 
 class SteamUsers(object):
@@ -43,7 +44,12 @@ class SteamUsers(object):
         :return: int
         """
         x = self.steam.GetMSG()
-        return x
+        if x:
+            L = x.contents[-1]
+            L =  int.from_bytes(L,sys.byteorder)
+            return x.contents[:L]
+        else:
+            return []
 
     def SendMSG(self, m) -> int:
         """Get the user's Steam level.
