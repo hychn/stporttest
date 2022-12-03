@@ -50,6 +50,7 @@ print("WORKING AS", NAME)
 for i in range(1000):
     steamworks.Users.SendMSG(NAME+b'HELLO'+ bytes(str(i),"utf") )
     x = steamworks.Users.GetMSG()
+    print(x)
         #if i: print(i.value)
     #print(len(x.contents))
 
