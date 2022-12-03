@@ -873,11 +873,13 @@ public:
             //std::cout << (std::string*)message->m_pData;
             message->Release();
         }
+        /*
         char ch = static_cast<char>(1);
         char len[2];
         len[0] = ch;
         data[16] = len;
-        //data[16] = "d";
+        */
+
 
         int* information = new int[10];
         for (int k = 0; k < 10; k++) {
