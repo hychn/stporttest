@@ -857,20 +857,33 @@ public:
         int L = SteamNetworkingMessages()->ReceiveMessagesOnChannel(0, msgs, 16);
         //printf("messages %i\n", L);
         for (int k = 0; k < 17; k++) {
-            data[k] = "MM";
+            
+
+            std::string str = "MM";
+            char* cstr = new char[str.length() + 1];
+            strcpy(cstr, str.c_str());
+            // do stuff
+            data[k] = cstr;
+            delete[] cstr;
         }
         for (int i = 0; i < L; i++) {
             SteamNetworkingMessage_t* message = msgs[i];
             //void* data = message->GetData();
 
             //printf("%s\n", (*(std::string*)message->m_pData).c_str());
+            
             data[i] = (char*)message->m_pData;
-            //memcpy(data[i], (char*)message->m_pData, sizeof(message->m_pData));
-            //message->
+            std::string str = "MM";
+            str += (char*)message->m_pData;
+            char* cstr = new char[str.length() + 1];
+            strcpy(cstr, str.c_str());
+            // do stuff
+            data[i] = cstr;
+            delete[] cstr;
+
+
             
             printf("%s\n", data[i]);
-
-            //std::cout << (std::string*)message->m_pData;
             message->Release();
         }
         /*
