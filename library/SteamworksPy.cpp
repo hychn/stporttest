@@ -864,8 +864,8 @@ public:
             //void* data = message->GetData();
 
             //printf("%s\n", (*(std::string*)message->m_pData).c_str());
-            //data[i] = (char*)message->m_pData;
-            memcpy(data[i], (char*)message->m_pData, sizeof(message->m_pData));
+            data[i] = (char*)message->m_pData;
+            //memcpy(data[i], (char*)message->m_pData, sizeof(message->m_pData));
             //message->
             
             printf("%s\n", data[i]);
