@@ -232,7 +232,7 @@ STEAMWORKS_METHODS = {
         'restype': int
     },
     'GetMSG': {
-        'restype': ctypes.POINTER(ctypes.c_char_p*32)
+        'restype': ctypes.POINTER(ctypes.c_char_p*17)
         #'restype': ctypes.POINTER(ctypes.c_int*10)
     },
 

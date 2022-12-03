@@ -43,8 +43,6 @@ class SteamUsers(object):
         :return: int
         """
         x = self.steam.GetMSG()
-        print( [i.raw for i in x.contents] )
-
         return x
 
     def SendMSG(self, m) -> int:

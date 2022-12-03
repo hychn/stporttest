@@ -852,20 +852,32 @@ public:
     {
         //SteamAPI_RunCallbacks();
 
-        SteamNetworkingMessage_t* msgs[32];
-        char* data[32];
-        int L = SteamNetworkingMessages()->ReceiveMessagesOnChannel(0, msgs, 32);
+        SteamNetworkingMessage_t* msgs[16];
+        char* data[17];
+        int L = SteamNetworkingMessages()->ReceiveMessagesOnChannel(0, msgs, 16);
         //printf("messages %i\n", L);
+        for (int k = 0; k < 17; k++) {
+            data[k] = "";
+        }
         for (int i = 0; i < L; i++) {
             SteamNetworkingMessage_t* message = msgs[i];
             //void* data = message->GetData();
 
             //printf("%s\n", (*(std::string*)message->m_pData).c_str());
-            data[i] = (char*)message->m_pData;
+            //data[i] = (char*)message->m_pData;
+            memcpy(data[i], (char*)message->m_pData, sizeof(message->m_pData));
+            //message->
+            
             printf("%s\n", data[i]);
+
             //std::cout << (std::string*)message->m_pData;
             message->Release();
         }
+        char ch = static_cast<char>(L);
+        char len[2];
+        len[0] = ch;
+        data[16] = len;
+        //data[16] = "d";
 
         int* information = new int[10];
         for (int k = 0; k < 10; k++) {

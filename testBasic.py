@@ -49,7 +49,17 @@ else:
 print("WORKING AS", NAME)
 for i in range(1000):
     steamworks.Users.SendMSG(NAME+b'HELLO'+ bytes(str(i),"utf") )
-    steamworks.Users.GetMSG()
+    x = steamworks.Users.GetMSG()
+    if x:
+        data = []
+        L = x.contents[-1]
+        L =  int.from_bytes(L,sys.byteorder)
+        if L>0:
+            print( [ i for i in x.contents[:L] ] )
+
+        #if i: print(i.value)
+    #print(len(x.contents))
+
     time.sleep(1/60)
     if i%10==0: steamworks.Users.RunCallbacks()
 
