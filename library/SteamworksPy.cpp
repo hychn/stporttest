@@ -859,7 +859,7 @@ public:
         for (int k = 0; k < 17; k++) {
             
 
-            std::string str = "MM";
+            std::string str = "";
             char* cstr = new char[str.length() + 1];
             strcpy(cstr, str.c_str());
             // do stuff
@@ -873,7 +873,7 @@ public:
             //printf("%s\n", (*(std::string*)message->m_pData).c_str());
             
             data[i] = (char*)message->m_pData;
-            std::string str = "MM";
+            std::string str = "";
             str += (char*)message->m_pData;
             char* cstr = new char[str.length() + 1];
             strcpy(cstr, str.c_str());
