@@ -857,7 +857,7 @@ public:
         int L = SteamNetworkingMessages()->ReceiveMessagesOnChannel(0, msgs, 16);
         //printf("messages %i\n", L);
         for (int k = 0; k < 17; k++) {
-            data[k] = "";
+            data[k] = "MM";
         }
         for (int i = 0; i < L; i++) {
             SteamNetworkingMessage_t* message = msgs[i];
