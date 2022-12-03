@@ -47,6 +47,7 @@ class SteamUsers(object):
         if x:
             L = x.contents[-1]
             L =  int.from_bytes(L,sys.byteorder)
+            print(L)
             return x.contents[:L]
         else:
             return []
